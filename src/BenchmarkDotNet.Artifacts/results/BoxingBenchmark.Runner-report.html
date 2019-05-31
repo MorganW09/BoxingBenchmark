@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>BoxingBenchmark.Runner-20190530-082425</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet=v0.11.5, OS=Windows 10.0.17763.503 (1809/October2018Update/Redstone5)
+Intel Core i7-7700HQ CPU 2.80GHz (Kaby Lake), 1 CPU, 8 logical and 4 physical cores
+.NET Core SDK=2.2.300
+  [Host]     : .NET Core 2.2.5 (CoreCLR 4.6.27617.05, CoreFX 4.6.27618.01), 64bit RyuJIT
+  DefaultJob : .NET Core 2.2.5 (CoreCLR 4.6.27617.05, CoreFX 4.6.27618.01), 64bit RyuJIT
+</code></pre>
+<pre><code></code></pre>
+
+<table>
+<thead><tr><th>     Method</th><th>N</th><th>Mean</th><th>Error</th><th>StdDev</th><th>Median</th>
+</tr>
+</thead><tbody><tr><td>TestSimpleKey</td><td>1000</td><td>47.73 us</td><td>0.3556 us</td><td>0.3153 us</td><td>47.63 us</td>
+</tr><tr><td>TestPerformantKey</td><td>1000</td><td>48.63 us</td><td>1.0683 us</td><td>2.0325 us</td><td>47.87 us</td>
+</tr><tr><td>TestSimpleKey</td><td>10000</td><td>651.54 us</td><td>6.8154 us</td><td>6.3751 us</td><td>652.13 us</td>
+</tr><tr><td>TestPerformantKey</td><td>10000</td><td>671.34 us</td><td>13.8145 us</td><td>31.1815 us</td><td>657.32 us</td>
+</tr></tbody></table>
+</body>
+</html>
