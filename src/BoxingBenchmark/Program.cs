@@ -8,7 +8,7 @@ namespace BoxingBenchmark
     [MemoryDiagnoser]
     public class Runner
     {
-        [Params(1000, 10_000)]
+        [Params(1000)]
         public int N;
 
         //[Benchmark(Baseline = true)]
@@ -118,6 +118,7 @@ namespace BoxingBenchmark
             var boxingStruct = new BoxingStruct()
             {
                 Id = id,
+                Name = "Test User",
                 User = new UserStruct()
                 {
                     name = "Test User",
@@ -129,15 +130,15 @@ namespace BoxingBenchmark
                     password = "password1",
                     profilePic = "profilePic.jpg"
                 },
-                Stats = new StatsStruct()
-                {
-                    posts = 10000,
-                    comments = 12000,
-                    reads = 100000,
-                    likes = -11000,
-                    topPost = "http://topPost",
-                    worstPost = "http://worstPost"
-                }
+                //Stats = new StatsStruct()
+                //{
+                //    posts = 10000,
+                //    comments = 12000,
+                //    reads = 100000,
+                //    likes = -11000,
+                //    topPost = "http://topPost",
+                //    worstPost = "http://worstPost"
+                //}
             };
 
             return boxingStruct;

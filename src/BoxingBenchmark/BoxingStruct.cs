@@ -7,8 +7,9 @@ namespace BoxingBenchmark
     public struct BoxingStruct
     {
         public int Id { get; set; }
+        public string Name { get; set; }
         public UserStruct User { get; set; }
-        public StatsStruct Stats { get; set; }
+        //public StatsStruct Stats { get; set; }
 
 
         public override bool Equals(object obj)
