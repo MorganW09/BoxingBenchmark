@@ -83,7 +83,7 @@ namespace BoxingBenchmark
 
         public int GetHashCode(BoxingStruct obj)
         {
-            return Id;
+            return obj.Id;
         }
     }
     public struct UserStruct
