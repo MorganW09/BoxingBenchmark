@@ -5,75 +5,75 @@ using System.Collections.Generic;
 
 namespace BoxingBenchmark
 {
-[MemoryDiagnoser]
-public class Runner
-{
-    [Params(1000)]
-    public int N;
-    [Benchmark]
-    public void StructKey()
+    [MemoryDiagnoser]
+    public class Runner
     {
-        var dictionary = new Dictionary<BoxingStruct, int>();
-        for (int i = 0; i < N; i++)
+        [Params(1000)]
+        public int N;
+        [Benchmark]
+        public void StructKey()
         {
-            var boxingStruct = MakeBoxingStruct(i);
-            if (!dictionary.ContainsKey(boxingStruct))
-                dictionary.Add(boxingStruct, i);
+            var dictionary = new Dictionary<BoxingStruct, int>();
+            for (int i = 0; i < N; i++)
+            {
+                var boxingStruct = MakeBoxingStruct(i);
+                if (!dictionary.ContainsKey(boxingStruct))
+                    dictionary.Add(boxingStruct, i);
+            }
+        }
+        [Benchmark]
+        public void ObjectKey()
+        {
+            var dictionary = new Dictionary<object, int>();
+            for (int i = 0; i < N; i++)
+            {
+                var boxingStruct = MakeBoxingStruct(i);
+                if (!dictionary.ContainsKey(boxingStruct))
+                    dictionary.Add(boxingStruct, i);
+            }
+        }
+
+        public BoxingStruct MakeBoxingStruct(int id)
+        {
+            var boxingStruct = new BoxingStruct()
+            {
+                Id = id,
+                User = new UserStruct()
+                {
+                    name = "Test User",
+                    email = "testemail@gmail.com",
+                    phone = "8293839283",
+                    age = 11110,
+                    createdDate = DateTime.UtcNow,
+                    updateDate = DateTime.UtcNow,
+                    password = "password1",
+                    profilePic = "profilePic.jpg"
+                }
+            };
+            return boxingStruct;
         }
     }
-    [Benchmark]
-    public void ObjectKey()
+    public struct BoxingStruct
     {
-        var dictionary = new Dictionary<object, int>();
-        for (int i = 0; i < N; i++)
+        public int Id { get; set; }
+        public UserStruct User { get; set; }
+
+
+        public override bool Equals(object obj)
         {
-            var boxingStruct = MakeBoxingStruct(i);
-            if (!dictionary.ContainsKey(boxingStruct))
-                dictionary.Add(boxingStruct, i);
-        }
-    }        
+            if (!(obj is BoxingStruct))
+                return false;
 
-public BoxingStruct MakeBoxingStruct(int id)
-{
-    var boxingStruct = new BoxingStruct()
-    {
-        Id = id,
-        User = new UserStruct()
+            BoxingStruct mys = (BoxingStruct)obj;
+            return mys.Id == Id;
+        }
+
+        public override int GetHashCode()
         {
-            name = "Test User",
-            email = "testemail@gmail.com",
-            phone = "8293839283",
-            age = 11110,
-            createdDate = DateTime.UtcNow,
-            updateDate = DateTime.UtcNow,
-            password = "password1",
-            profilePic = "profilePic.jpg"
+            return Id;
         }
-    };
-    return boxingStruct;
-}
-}
-public struct BoxingStruct
-{
-    public int Id { get; set; }
-    public UserStruct User { get; set; }
-
-
-    public override bool Equals(object obj)
-    {
-        if (!(obj is BoxingStruct))
-            return false;
-
-        BoxingStruct mys = (BoxingStruct)obj;
-        return mys.Id == Id;
     }
-
-    public override int GetHashCode()
-    {
-        return Id;
-    }
-}
-public struct UserStruct
+    public struct UserStruct
     {
         public string name { get; set; }
         public string email { get; set; }
@@ -84,11 +84,11 @@ public struct UserStruct
         public string password { get; set; }
         public string profilePic { get; set; }
     }
-public class Program
-{
-    static void Main(string[] args)
+    public class Program
     {
-        var summary = BenchmarkRunner.Run<Runner>();
+        static void Main(string[] args)
+        {
+            var summary = BenchmarkRunner.Run<Runner>();
+        }
     }
-}
 }
