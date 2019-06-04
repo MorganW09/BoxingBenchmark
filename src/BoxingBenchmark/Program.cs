@@ -54,7 +54,7 @@ namespace BoxingBenchmark
         //}
 
         [Benchmark(Baseline = true)]
-        public void TestStruct()
+        public void StructKey()
         {
             var dictionary = new Dictionary<BoxingStruct, int>();
 
@@ -69,7 +69,7 @@ namespace BoxingBenchmark
         }
 
         [Benchmark]
-        public void TestStructObject()
+        public void ObjectKey()
         {
             var dictionary = new Dictionary<object, int>();
 
@@ -83,35 +83,35 @@ namespace BoxingBenchmark
             }
         }
 
-        [Benchmark]
-        public void TestClass()
-        {
-            var dictionary = new Dictionary<object, int>();
+        //[Benchmark]
+        //public void TestClass()
+        //{
+        //    var dictionary = new Dictionary<object, int>();
 
-            for (int i = 0; i < N; i++)
-            {
-                var boxingClass = MakeBoxingClass(i);
-                if (!dictionary.ContainsKey(boxingClass))
-                {
-                    dictionary.Add(boxingClass, i);
-                }
-            }
-        }
+        //    for (int i = 0; i < N; i++)
+        //    {
+        //        var boxingClass = MakeBoxingClass(i);
+        //        if (!dictionary.ContainsKey(boxingClass))
+        //        {
+        //            dictionary.Add(boxingClass, i);
+        //        }
+        //    }
+        //}
 
-        [Benchmark]
-        public void TestStructAndInterface()
-        {
-            IDictionary<object, int> dictionary = new Dictionary<object, int>();
+        //[Benchmark]
+        //public void TestStructAndInterface()
+        //{
+        //    IDictionary<object, int> dictionary = new Dictionary<object, int>();
 
-            for (int i = 0; i < N; i++)
-            {
-                var boxingStruct = MakeBoxingStruct(i);
-                if (!dictionary.ContainsKey(boxingStruct))
-                {
-                    dictionary.Add(boxingStruct, i);
-                }
-            }
-        }
+        //    for (int i = 0; i < N; i++)
+        //    {
+        //        var boxingStruct = MakeBoxingStruct(i);
+        //        if (!dictionary.ContainsKey(boxingStruct))
+        //        {
+        //            dictionary.Add(boxingStruct, i);
+        //        }
+        //    }
+        //}
 
         public BoxingStruct MakeBoxingStruct(int id)
         {

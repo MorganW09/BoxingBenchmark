@@ -34,6 +34,10 @@ namespace BoxingBenchmark
         public string email { get; set; }
         public string phone { get; set; }
         public int age { get; set; }
+
+
+
+        //wait
         public DateTime createdDate { get; set; }
         public DateTime updateDate { get; set; }
         public string password { get; set; }
