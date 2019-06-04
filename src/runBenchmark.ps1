@@ -1,0 +1,1 @@
+dotnet run --project .\BoxingBenchmark\BoxingBenchmark.csproj -c Release
